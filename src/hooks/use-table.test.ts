@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers */
-import type { NonCancelableCustomEvent } from '@awsui/components-react';
+import type { NonCancelableCustomEvent } from '@awsui/components-react/interfaces';
 import type { TableProps } from '@awsui/components-react/table';
 import { act, renderHook } from '@testing-library/react-hooks';
 import type { TableState, UseTableProps } from '..';
 import { useTable } from '..';
 
 interface Item {
-  num: number;
+  readonly num: number;
 }
 
 const TEST_SELECTED_ITEMS: unknown[] = [{}, {}];

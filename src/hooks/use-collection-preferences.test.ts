@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers */
-import type { NonCancelableCustomEvent } from '@awsui/components-react';
+import type { NonCancelableCustomEvent } from '@awsui/components-react/interfaces';
 import type { CollectionPreferencesProps } from '@awsui/components-react/collection-preferences';
 import { act, renderHook } from '@testing-library/react-hooks';
 import { useCollectionPreferences } from '..';

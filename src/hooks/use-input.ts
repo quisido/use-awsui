@@ -1,17 +1,19 @@
-import type { NonCancelableCustomEvent } from '@awsui/components-react';
+import type { NonCancelableCustomEvent } from '@awsui/components-react/interfaces';
 import type { InputProps } from '@awsui/components-react/input';
 import type { SetStateAction } from 'react';
 import { useCallback, useState } from 'react';
 
 export interface Props {
-  defaultValue?: string;
+  readonly defaultValue?: string | undefined;
 }
 
 export interface State {
-  setValue: (value: SetStateAction<string>) => void;
-  value: InputProps['value'];
-  handleChange: (
-    event: NonCancelableCustomEvent<InputProps.ChangeDetail>,
+  readonly setValue: (value: SetStateAction<string>) => void;
+  readonly value: string;
+  readonly handleChange: (
+    event: Readonly<
+      NonCancelableCustomEvent<Readonly<InputProps.ChangeDetail>>
+    >,
   ) => void;
 }
 
@@ -21,7 +23,7 @@ export default function useInput(props: Props = DEFAULT_PROPS): State {
   const { defaultValue = '' } = props;
 
   // States
-  const [value, setValue] = useState<InputProps['value']>(defaultValue);
+  const [value, setValue] = useState<string>(defaultValue);
 
   return {
     setValue,

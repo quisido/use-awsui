@@ -1,4 +1,4 @@
-import type { NonCancelableCustomEvent } from '@awsui/components-react';
+import type { NonCancelableCustomEvent } from '@awsui/components-react/interfaces';
 import type { CheckboxProps } from '@awsui/components-react/checkbox';
 import { act, renderHook } from '@testing-library/react-hooks';
 import { useCheckbox } from '..';

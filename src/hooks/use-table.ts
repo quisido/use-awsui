@@ -1,27 +1,35 @@
-import type { NonCancelableCustomEvent } from '@awsui/components-react';
+import type { NonCancelableCustomEvent } from '@awsui/components-react/interfaces';
 import type { TableProps } from '@awsui/components-react/table';
 import { useCallback, useState } from 'react';
 import getDefaultTableProps from '../utils/get-default-table-props';
 import isSortable from '../utils/is-sortable';
 
 export interface Props<Item> {
-  defaultSelectedItems?: Item[];
-  defaultSortingColumn?: TableProps.SortingColumn<Item>;
-  defaultSortingDescending?: boolean;
-  onSelectionChange?: (selectedItems: readonly Item[]) => void;
-  onSortingChange?: (state: TableProps.SortingState<Item>) => void;
+  readonly defaultSelectedItems?: readonly Item[] | undefined;
+  readonly defaultSortingColumn?: TableProps.SortingColumn<Item> | undefined;
+  readonly defaultSortingDescending?: boolean | undefined;
+  readonly onSelectionChange?:
+    | ((selectedItems: readonly Item[]) => void)
+    | undefined;
+  readonly onSortingChange?:
+    | ((state: TableProps.SortingState<Item>) => void)
+    | undefined;
 }
 
 export interface State<Item> {
-  selectedItems?: Item[];
-  sort: (a: Item, b: Item) => number;
-  sortingColumn?: TableProps.SortingColumn<Item>;
-  sortingDescending?: boolean;
-  handleSelectionChange: (
-    event: NonCancelableCustomEvent<TableProps.SelectionChangeDetail<Item>>,
+  readonly selectedItems: readonly Item[] | undefined;
+  readonly sort: (a: Item, b: Item) => number;
+  readonly sortingColumn: Readonly<TableProps.SortingColumn<Item>> | undefined;
+  readonly sortingDescending: boolean | undefined;
+  readonly handleSelectionChange: (
+    event: Readonly<
+      NonCancelableCustomEvent<Readonly<TableProps.SelectionChangeDetail<Item>>>
+    >,
   ) => void;
-  handleSortingChange: (
-    event: NonCancelableCustomEvent<TableProps.SortingState<Item>>,
+  readonly handleSortingChange: (
+    event: Readonly<
+      NonCancelableCustomEvent<Readonly<TableProps.SortingState<Item>>>
+    >,
   ) => void;
 }
 
@@ -39,9 +47,9 @@ export default function useTable<Item>(props?: Props<Item>): State<Item> {
   } = props ?? getDefaultTableProps<Item>();
 
   // States
-  const [selectedItems, setSelectedItems] = useState<Item[] | undefined>(
-    defaultSelectedItems,
-  );
+  const [selectedItems, setSelectedItems] = useState<
+    readonly Item[] | undefined
+  >(defaultSelectedItems);
   const [sortingColumn, setSortingColumn] = useState<
     TableProps.SortingColumn<Item> | undefined
   >(defaultSortingColumn);

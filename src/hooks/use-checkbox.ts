@@ -1,17 +1,19 @@
-import type { NonCancelableCustomEvent } from '@awsui/components-react';
+import type { NonCancelableCustomEvent } from '@awsui/components-react/interfaces';
 import type { CheckboxProps } from '@awsui/components-react/checkbox';
 import type { SetStateAction } from 'react';
 import { useCallback, useState } from 'react';
 
 export interface Props {
-  defaultChecked?: boolean;
+  readonly defaultChecked?: boolean | undefined;
 }
 
 export interface State {
-  checked: boolean;
-  setChecked: (value: SetStateAction<boolean>) => void;
-  handleChange: (
-    event: NonCancelableCustomEvent<CheckboxProps.ChangeDetail>,
+  readonly checked: boolean;
+  readonly setChecked: (value: SetStateAction<boolean>) => void;
+  readonly handleChange: (
+    event: Readonly<
+      NonCancelableCustomEvent<Readonly<CheckboxProps.ChangeDetail>>
+    >,
   ) => void;
 }
 

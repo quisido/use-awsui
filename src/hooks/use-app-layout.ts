@@ -1,23 +1,25 @@
-import type { NonCancelableCustomEvent } from '@awsui/components-react';
+import type { NonCancelableCustomEvent } from '@awsui/components-react/interfaces';
 import type { AppLayoutProps } from '@awsui/components-react/app-layout';
 import type { SetStateAction } from 'react';
 import { useCallback, useState } from 'react';
 
 export interface Props {
-  defaultNavigationOpen?: boolean;
-  defaultToolsOpen?: boolean;
+  readonly defaultNavigationOpen?: boolean | undefined;
+  readonly defaultToolsOpen?: boolean | undefined;
 }
 
 export interface State {
-  navigationOpen?: boolean;
-  setNavigationOpen: (value: SetStateAction<boolean | undefined>) => void;
-  setToolsOpen: (value: SetStateAction<boolean | undefined>) => void;
-  toolsOpen?: boolean;
-  handleNavigationChange: (
+  readonly navigationOpen: boolean | undefined;
+  readonly setToolsOpen: (value: SetStateAction<boolean | undefined>) => void;
+  readonly toolsOpen: boolean | undefined;
+  readonly handleNavigationChange: (
     event: NonCancelableCustomEvent<AppLayoutProps.ChangeDetail>,
   ) => void;
-  handleToolsChange: (
+  readonly handleToolsChange: (
     event: NonCancelableCustomEvent<AppLayoutProps.ChangeDetail>,
+  ) => void;
+  readonly setNavigationOpen: (
+    value: SetStateAction<boolean | undefined>,
   ) => void;
 }
 

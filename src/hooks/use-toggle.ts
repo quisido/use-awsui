@@ -1,16 +1,18 @@
-import type { NonCancelableCustomEvent } from '@awsui/components-react';
+import type { NonCancelableCustomEvent } from '@awsui/components-react/interfaces';
 import type { ToggleProps } from '@awsui/components-react/toggle';
 import { useCallback, useState } from 'react';
 
 export interface Props {
-  defaultChecked?: boolean;
-  onChange?: (checked: boolean) => void;
+  readonly defaultChecked?: boolean | undefined;
+  readonly onChange?: ((checked: boolean) => void) | undefined;
 }
 
 export interface State {
-  checked: boolean;
-  handleChange: (
-    event: NonCancelableCustomEvent<ToggleProps.ChangeDetail>,
+  readonly checked: boolean;
+  readonly handleChange: (
+    event: Readonly<
+      NonCancelableCustomEvent<Readonly<ToggleProps.ChangeDetail>>
+    >,
   ) => void;
 }
 
@@ -26,7 +28,11 @@ export default function useToggle(props: Props = DEFAULT_PROPS): State {
     checked,
 
     handleChange: useCallback(
-      (e: NonCancelableCustomEvent<ToggleProps.ChangeDetail>): void => {
+      (
+        e: Readonly<
+          NonCancelableCustomEvent<Readonly<ToggleProps.ChangeDetail>>
+        >,
+      ): void => {
         setChecked(e.detail.checked);
         if (onChange) {
           onChange(e.detail.checked);

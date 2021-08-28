@@ -1,17 +1,19 @@
-import type { NonCancelableCustomEvent } from '@awsui/components-react';
+import type { NonCancelableCustomEvent } from '@awsui/components-react/interfaces';
 import type { RadioGroupProps } from '@awsui/components-react/radio-group';
 import type { SetStateAction } from 'react';
 import { useCallback, useState } from 'react';
 
 export interface Props {
-  defaultValue?: string | null;
+  readonly defaultValue?: string | null | undefined;
 }
 
 export interface State {
-  setValue: (value: SetStateAction<string | null>) => void;
-  value: RadioGroupProps['value'];
-  handleChange: (
-    event: NonCancelableCustomEvent<RadioGroupProps.ChangeDetail>,
+  readonly setValue: (value: SetStateAction<string | null>) => void;
+  readonly value: string | null;
+  readonly handleChange: (
+    event: Readonly<
+      NonCancelableCustomEvent<Readonly<RadioGroupProps.ChangeDetail>>
+    >,
   ) => void;
 }
 

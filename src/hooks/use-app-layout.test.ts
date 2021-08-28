@@ -1,4 +1,4 @@
-import type { NonCancelableCustomEvent } from '@awsui/components-react';
+import type { NonCancelableCustomEvent } from '@awsui/components-react/interfaces';
 import type { AppLayoutProps } from '@awsui/components-react/app-layout';
 import { act, renderHook } from '@testing-library/react-hooks';
 import { useAppLayout } from '..';

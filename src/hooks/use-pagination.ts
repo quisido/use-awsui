@@ -1,20 +1,24 @@
-import type { NonCancelableCustomEvent } from '@awsui/components-react';
+import type { NonCancelableCustomEvent } from '@awsui/components-react/interfaces';
 import type { PaginationProps } from '@awsui/components-react/pagination';
 import type { SetStateAction } from 'react';
 import { useCallback, useState } from 'react';
 
 export interface Props {
-  defaultCurrentPageIndex?: number;
-  onCurrentPageIndexChange?: (currentPageIndex: number) => void;
-  pageSize?: number;
+  readonly defaultCurrentPageIndex?: number | undefined;
+  readonly onCurrentPageIndexChange?:
+    | ((currentPageIndex: number) => void)
+    | undefined;
+  readonly pageSize?: number | undefined;
 }
 
 export interface State {
-  currentPageIndex: number;
-  paginate: <Item>(items: readonly Item[]) => readonly Item[];
-  setCurrentPageIndex: (value: SetStateAction<number>) => void;
-  handleChange: (
-    event: NonCancelableCustomEvent<PaginationProps.ChangeDetail>,
+  readonly currentPageIndex: number;
+  readonly paginate: <Item>(items: readonly Item[]) => readonly Item[];
+  readonly setCurrentPageIndex: (value: SetStateAction<number>) => void;
+  readonly handleChange: (
+    event: Readonly<
+      NonCancelableCustomEvent<Readonly<PaginationProps.ChangeDetail>>
+    >,
   ) => void;
 }
 
@@ -39,7 +43,11 @@ export default function usePagination(props?: Props): State {
     setCurrentPageIndex,
 
     handleChange: useCallback(
-      (e: NonCancelableCustomEvent<PaginationProps.ChangeDetail>): void => {
+      (
+        e: Readonly<
+          NonCancelableCustomEvent<Readonly<PaginationProps.ChangeDetail>>
+        >,
+      ): void => {
         setCurrentPageIndex(e.detail.currentPageIndex);
         if (onCurrentPageIndexChange) {
           onCurrentPageIndexChange(e.detail.currentPageIndex);

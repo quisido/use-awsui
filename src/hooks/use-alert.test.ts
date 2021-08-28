@@ -1,4 +1,4 @@
-import type { NonCancelableCustomEvent } from '@awsui/components-react';
+import type { NonCancelableCustomEvent } from '@awsui/components-react/interfaces';
 import { act, renderHook } from '@testing-library/react-hooks';
 import { useAlert } from '..';
 

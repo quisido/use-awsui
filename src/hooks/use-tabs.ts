@@ -1,17 +1,17 @@
-import type { NonCancelableCustomEvent } from '@awsui/components-react';
+import type { NonCancelableCustomEvent } from '@awsui/components-react/interfaces';
 import type { TabsProps } from '@awsui/components-react/tabs';
 import type { SetStateAction } from 'react';
 import { useCallback, useState } from 'react';
 
 export interface Props {
-  defaultActiveTabId?: string;
+  readonly defaultActiveTabId?: string | undefined;
 }
 
 export interface State {
-  activeTabId?: string;
-  setActiveTabId: (value: SetStateAction<string | undefined>) => void;
-  handleChange: (
-    event: NonCancelableCustomEvent<TabsProps.ChangeDetail>,
+  readonly activeTabId: string | undefined;
+  readonly setActiveTabId: (value: SetStateAction<string | undefined>) => void;
+  readonly handleChange: (
+    event: Readonly<NonCancelableCustomEvent<Readonly<TabsProps.ChangeDetail>>>,
   ) => void;
 }
 

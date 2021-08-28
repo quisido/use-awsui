@@ -1,15 +1,15 @@
-import type { NonCancelableCustomEvent } from '@awsui/components-react';
+import type { NonCancelableCustomEvent } from '@awsui/components-react/interfaces';
 import type { SetStateAction } from 'react';
 import { useCallback, useState } from 'react';
 
 export interface Props {
-  defaultVisible?: boolean;
+  readonly defaultVisible?: boolean | undefined;
 }
 
 export interface State {
-  setVisible: (value: SetStateAction<boolean | undefined>) => void;
-  visible?: boolean;
-  handleDismiss: (
+  readonly setVisible: (value: SetStateAction<boolean | undefined>) => void;
+  readonly visible: boolean | undefined;
+  readonly handleDismiss: (
     event: Readonly<NonCancelableCustomEvent<Readonly<Record<string, never>>>>,
   ) => void;
 }

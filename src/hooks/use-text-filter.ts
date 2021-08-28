@@ -1,17 +1,19 @@
-import type { NonCancelableCustomEvent } from '@awsui/components-react';
+import type { NonCancelableCustomEvent } from '@awsui/components-react/interfaces';
 import type { TextFilterProps } from '@awsui/components-react/text-filter';
 import type { SetStateAction } from 'react';
 import { useCallback, useState } from 'react';
 
 export interface Props {
-  defaultFilteringText?: string;
+  readonly defaultFilteringText?: string | undefined;
 }
 
 export interface State {
-  filteringText: string;
-  setFilteringText: (value: SetStateAction<string>) => void;
-  handleChange: (
-    event: NonCancelableCustomEvent<TextFilterProps.ChangeDetail>,
+  readonly filteringText: string;
+  readonly setFilteringText: (value: SetStateAction<string>) => void;
+  readonly handleChange: (
+    event: Readonly<
+      NonCancelableCustomEvent<Readonly<TextFilterProps.ChangeDetail>>
+    >,
   ) => void;
 }
 

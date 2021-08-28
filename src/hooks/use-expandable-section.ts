@@ -1,17 +1,19 @@
-import type { NonCancelableCustomEvent } from '@awsui/components-react';
+import type { NonCancelableCustomEvent } from '@awsui/components-react/interfaces';
 import type { ExpandableSectionProps } from '@awsui/components-react/expandable-section';
 import type { SetStateAction } from 'react';
 import { useCallback, useState } from 'react';
 
 export interface Props {
-  defaultExpanded?: boolean;
+  readonly defaultExpanded?: boolean | undefined;
 }
 
 export interface State {
-  expanded?: boolean;
-  setExpanded: (value: SetStateAction<boolean | undefined>) => void;
-  handleChange: (
-    event: NonCancelableCustomEvent<ExpandableSectionProps.ChangeDetail>,
+  readonly expanded: boolean | undefined;
+  readonly setExpanded: (value: SetStateAction<boolean | undefined>) => void;
+  readonly handleChange: (
+    event: Readonly<
+      NonCancelableCustomEvent<Readonly<ExpandableSectionProps.ChangeDetail>>
+    >,
   ) => void;
 }
 
@@ -33,7 +35,11 @@ export default function useExpandableSection(
 
     handleChange: useCallback(
       (
-        e: NonCancelableCustomEvent<ExpandableSectionProps.ChangeDetail>,
+        e: Readonly<
+          NonCancelableCustomEvent<
+            Readonly<ExpandableSectionProps.ChangeDetail>
+          >
+        >,
       ): void => {
         setExpanded(e.detail.expanded);
       },

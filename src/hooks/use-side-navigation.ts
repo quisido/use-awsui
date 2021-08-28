@@ -2,12 +2,14 @@ import type { SideNavigationProps } from '@awsui/components-react/side-navigatio
 import { useCallback, useState } from 'react';
 
 export interface Props {
-  defaultActiveHref?: string;
+  readonly defaultActiveHref?: string | undefined;
 }
 
 export interface State {
-  activeHref: string;
-  handleFollow: (event: CustomEvent<SideNavigationProps.FollowDetail>) => void;
+  readonly activeHref: string;
+  readonly handleFollow: (
+    event: Readonly<CustomEvent<Readonly<SideNavigationProps.FollowDetail>>>,
+  ) => void;
 }
 
 const DEFAULT_PROPS: Props = Object.freeze({});

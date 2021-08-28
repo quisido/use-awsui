@@ -1,4 +1,4 @@
-import type { NonCancelableCustomEvent } from '@awsui/components-react';
+import type { NonCancelableCustomEvent } from '@awsui/components-react/interfaces';
 import type { ExpandableSectionProps } from '@awsui/components-react/expandable-section';
 import { act, renderHook } from '@testing-library/react-hooks';
 import { useExpandableSection } from '..';

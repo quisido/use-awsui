@@ -4,25 +4,29 @@ import { useCallback, useMemo, useState } from 'react';
 import getDefaultCollectionPreferencesProps from '../utils/get-default-collection-preferences-props';
 
 export interface Props<Custom> {
-  defaultCustom?: Custom;
-  defaultPageSize?: number;
-  defaultVisibleContent?: string[];
-  defaultWrapLines?: boolean;
-  onCustomChange?: (custom?: Custom) => void;
-  onPageSizeChange?: (pageSize?: number) => void;
-  onVisibleContentChange?: (visibleContent?: readonly string[]) => void;
-  onWrapLinesChange?: (wrapLines?: boolean) => void;
+  readonly defaultCustom?: Custom | undefined;
+  readonly defaultPageSize?: number | undefined;
+  readonly defaultVisibleContent?: readonly string[] | undefined;
+  readonly defaultWrapLines?: boolean | undefined;
+  readonly onCustomChange?: ((custom?: Custom) => void) | undefined;
+  readonly onPageSizeChange?: ((pageSize?: number) => void) | undefined;
+  readonly onVisibleContentChange?:
+    | ((visibleContent?: readonly string[]) => void)
+    | undefined;
+  readonly onWrapLinesChange?: ((wrapLines?: boolean) => void) | undefined;
 }
 
 export interface State<Custom> {
-  custom?: Custom;
-  pageSize?: number;
-  preferences: CollectionPreferencesProps.Preferences;
-  visibleContent?: readonly string[];
-  wrapLines?: boolean;
-  handleConfirm: (
-    event: NonCancelableCustomEvent<
-      CollectionPreferencesProps.Preferences<Custom>
+  readonly custom: Custom | undefined;
+  readonly pageSize: number | undefined;
+  readonly preferences: CollectionPreferencesProps.Preferences;
+  readonly visibleContent: readonly string[] | undefined;
+  readonly wrapLines: boolean | undefined;
+  readonly handleConfirm: (
+    event: Readonly<
+      NonCancelableCustomEvent<
+        Readonly<CollectionPreferencesProps.Preferences<Custom>>
+      >
     >,
   ) => void;
 }
@@ -59,8 +63,10 @@ export default function useCollectionPreferences<Custom>(
 
     handleConfirm: useCallback(
       (
-        e: NonCancelableCustomEvent<
-          CollectionPreferencesProps.Preferences<Custom>
+        e: Readonly<
+          NonCancelableCustomEvent<
+            Readonly<CollectionPreferencesProps.Preferences<Custom>>
+          >
         >,
       ): void => {
         const newCustom: Custom | undefined = e.detail.custom;
