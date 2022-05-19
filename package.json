@@ -1,6 +1,6 @@
 {
   "name": "use-awsui",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "author": "Charles Stover <use-awsui@charlesstover.com>",
   "description": "A collection of React hooks for the AWS UI components",
   "homepage": "https://www.npmjs.com/package/use-awsui",
@@ -31,12 +31,11 @@
     "module": "./dist/esm/index.js"
   },
   "scripts": {
-    "build": "rollup --config",
     "eslint": "eslint src",
-    "jest": "jest",
-    "start": "rollup --config --watch",
-    "test": "eslint src && jest",
-    "test-watch": "jest --coverage=false --watch"
+    "jest": "jest --runInBand",
+    "jest:watch": "jest --coverage=false --runInBand --watch",
+    "rollup": "rollup --config",
+    "start": "rollup --config --watch"
   },
   "devDependencies": {
     "@awsui/components-react": "^3.0.236",
@@ -69,7 +68,7 @@
   },
   "peerDependencies": {
     "@awsui/components-react": "^3.0.0",
-    "react": "^16.8.0 || ^17.0.0",
-    "react-dom": "^16.8.0 || ^17.0.0"
+    "react": "^16.8.0 || ^17.0.0 || ^18.0.0",
+    "react-dom": "^16.8.0 || ^17.0.0 || ^18.0.0"
   }
 }
