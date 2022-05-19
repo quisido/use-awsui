@@ -6912,8 +6912,8 @@ typescript@~4.3:
     typescript: ~4.3
   peerDependencies:
     "@awsui/components-react": ^3.0.0
-    react: ^16.8.0 || ^17.0.0
-    react-dom: ^16.8.0 || ^17.0.0
+    react: ^16.8.0 || ^17.0.0 || ^18.0.0
+    react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
   languageName: unknown
   linkType: soft
 
